@@ -12,4 +12,5 @@ int main(){
         x = 30;
         printf("x actualizado %d en el proceso padre %d\n", x, getpid());
     }
+    return 0;
 }
