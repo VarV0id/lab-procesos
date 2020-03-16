@@ -3,10 +3,10 @@
 
 int main(){
     if(fork() == 0){
-        printf("Hello!!);
+        printf("Hello!!");
     }else{
         sleep(1);
-        printf("Good Bye!!);
+        printf("Good Bye!!");
     }
     return 0;
 }
