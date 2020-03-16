@@ -19,17 +19,19 @@ Realizar los siguientes ejercicios:
   * **¿Qué pasa si ellos empiezan a escribir el archivo de manera concurrente, es decir, a la misma vez?** \
   **R:\\** Ambos procesos pueden escribir de forma recurrente en el archivo. Mirar prueba en carpeta ```Imagenes Ejercicios``` y en carpeta ```files```, el archivo ```out.txt```
 3. Escriba un programa usando ```fork()```. El proceso hijo imprimirá ```"Hello"```; el proceso padre imprimirá ```"goodbye"```. Usted deberá asegurar que el proceso hijo imprima en primer lugar; **¿usted podría hacer esto sin llamar ```wait()``` en el padre?** \
-	**R:\\** Dado que el proceso padre se ejecutará primero que el proceso hijo, lo que se debe hacer para que se imprima el proceso hijo primero es poner un alto a la ejecución del hilo del proceso padre y dado que no se puede usar la llamada ```wait()```, esto se puede lograr con una llamada similar conocida como ```sleep()```. \
+	**R:\\** Dado que el proceso padre se ejecutará primero que el proceso hijo, lo que se debe hacer para que se imprima el proceso hijo primero es poner un alto a la ejecución del hilo del proceso padre y dado que no se puede usar la llamada ```wait()```, esto se puede lograr con una llamada similar conocida como ```sleep()```. 
 4. Escriba un programa que llame ```fork()``` y entonces llame alguna forma de ```exec()``` para correr el programa ```/bin/ls```. Intente probar todas las variaciones de la familia de funciones ```exec()``` incluyendo (en linux) ```execl()```, ```execle()```, ```execlp()```, ```execv()```, ```execvp()``` y ```execvpe()```. ¿Por qué piensa usted que existen tantas variaciones para la misma llamada básica? \
 **R:\\** Existen muchas variaciones para la misma llamada, debido a que cada una de estas brinda diferente informacion a la operacion a ejecutar, ademas, puede ser debido a la compatibilidad por sistema operativo, las funciones pueden especializarse en algun sistema operativo. \
 5. Escriba ahora un programa que use ```wait()``` para esperar que el proceso hijo finalice su ejecución. \
 **¿Cuál es el valor de retorno de la función ```wait()```?**
 **R:\\** La función Wait retorna el PID del proceso hijo que esta esperando que finalice, en caso de que no exista proceso hijo retornará un -1.\
 **¿Qué pasa si usted usa la función ```wait``` en el hijo?** \
-**R:\\** Lo que ocurre es que el proceso padre terminará su ejecución primero y el programa finalizará. \
+**R:\\** Lo que ocurre es que el proceso padre terminará su ejecución primero y el programa finalizará. 
 6. Haga un programa, como el del ejercicio anterior, con una breve modificación, la cual consiste en usar ```waitpid()``` en lugar de ```wait()```. ¿Cuándo podría ser ```waitpid()``` útil?
 **R:\\** ```waitpid()``` puede ser util cuando se requiera que el proceso principal espere la terminacion de los procesos hijos individualmente. Por ejemplo, se estan corriendo muchos procesos hijos y el padre debe esperar especificamente a uno, debido a que depende del resultado del proceso hijo para finalizar.
-7. Escriba un programa que cree un proceso hijo y entonces en el proceso hijo cierre la salida estandar (```STDOUT FILENO```). ¿Qué pasa si el hijo llama ```printf()``` para imprimir alguna salida después de cerrar el descriptor?
+7. Escriba un programa que cree un proceso hijo y entonces en el proceso hijo cierre la salida estandar (```STDOUT FILENO```). \
+**¿Qué pasa si el hijo llama ```printf()``` para imprimir alguna salida después de cerrar el descriptor?** \
+**R:\\** En este caso lo que pasa es que el hijo que cerró la salida estándar ya no es capaz de imprimir más cosas por consola. Ahora, en caso de que el proceso hijo cierre la salida estándar y el proceso padre quiera imprimir algo por consola, lo va a poder hacer sin problemas.
 8. Escriba un programa que cree dos hijos y conecte la salida estándar de un hijo a la entrada estándar del otro usando la llamada a sistema ```pipe()```
 
 ## 3. Entregable ##
